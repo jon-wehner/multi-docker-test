@@ -1,32 +1,32 @@
 version: "3"
 services:
-client:
-  image: "jonwehner/multi-client"
-  mem_limit: 128m
-  hostname: client
-server:
-  image: "jonwehner/multi-server"
-  mem_limit: 128m
-  hostname: api
-  environment:
-    - REDIS_HOST=$REDIS_HOST
-    - REDIS_PORT=$REDIS_PORT
-    - PGUSER=$PGUSER
-    - PGHOST=$PGHOST
-    - PGDATABASE=$PGDATABASE
-    - PGPASSWORD=$PGPASSWORD
-    - PGPORT=$PGPORT
-worker:
-  image: "jonwehner/multi-worker"
-  mem_limit: 128m
-  hostname: worker
-  environment:
-    - REDIS_HOST=$REDIS_HOST
-    - REDIS_PORT=$REDIS_PORT
-nginx:
-  image: "jonwehner/multi-nginx"
-  mem_limit: 128m
-  hostname: nginx
-  restsart: always
-  ports:
-    - "80:80"
+  client:
+    image: "jonwehner/multi-client"
+    mem_limit: 128m
+    hostname: client
+  server:
+    image: "jonwehner/multi-server"
+    mem_limit: 128m
+    hostname: api
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+      - PGUSER=$PGUSER
+      - PGHOST=$PGHOST
+      - PGDATABASE=$PGDATABASE
+      - PGPASSWORD=$PGPASSWORD
+      - PGPORT=$PGPORT
+  worker:
+    image: "jonwehner/multi-worker"
+    mem_limit: 128m
+    hostname: worker
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+  nginx:
+    image: "jonwehner/multi-nginx"
+    mem_limit: 128m
+    hostname: nginx
+    restsart: always
+    ports:
+      - "80:80"

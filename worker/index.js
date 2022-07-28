@@ -2,11 +2,9 @@ const keys = require('./keys');
 const redis = require('redis');
 
 const redisClient = redis.createClient({
-  legacyMode: true,
-  socket: {
-    host: keys.redisHost,
-    port: keys.redisPort,
-  },
+  host: keys.redisHost,
+  port: keys.redisPort,
+  retry_strategy: () => 1000,
 });
 
 const sub = redisClient.duplicate();

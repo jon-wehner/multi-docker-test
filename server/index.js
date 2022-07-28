@@ -59,9 +59,9 @@ app.post('/values', async (req, res) => {
   if (parseInt(idx) > 40) {
     return res.status(422).send('Index too high');
   }
-  redisClient.hset('values', index, 'Nothing yet!');
-  redisPublisher.publish('insert', index);
-  pgClient.query('INSERT INTO values(number) VALUES($1)', [index]);
+  redisClient.hset('values', idx, 'Nothing yet!');
+  redisPublisher.publish('insert', idx);
+  pgClient.query('INSERT INTO values(number) VALUES($1)', [idx]);
 
   res.send({ working: true });
 });

@@ -9,10 +9,10 @@ export default function Fib() {
   useEffect(() => {
     async function fetchData() {
       const values = await axios.get('/api/values/current');
-      setValues(values);
+      setValues(values.data);
 
       const indexes = await axios.get('/api/values/all');
-      setSeenIndexes(indexes);
+      setSeenIndexes(indexes.data.map((obj) => obj.number));
     }
     fetchData();
   }, [setSeenIndexes, setValues]);
@@ -21,7 +21,7 @@ export default function Fib() {
     const entries = [];
 
     for (let key in values) {
-      entries.push(<div key={key}>For Index {key} I Calculated values[key]</div>);
+      entries.push(<div key={key}>{`For Index ${key} I Calculated ${values[key]}`}</div>);
     }
     return entries;
   }
@@ -38,6 +38,7 @@ export default function Fib() {
       <form onSubmit={handleSubmit}>
         <label>Enter your index:</label>
         <input value={index} onChange={(e) => setIndex(e.target.value)} />
+        <button type="submit">Submit</button>
       </form>
       <h3>Indexes I have seen</h3>
       {seenIndexes.join(', ')}

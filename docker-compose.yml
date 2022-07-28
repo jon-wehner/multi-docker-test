@@ -10,7 +10,7 @@ services:
   postgres: 
     image: 'postgres:latest'
     environment:
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=postgres_password
   redis:
     image: 'redis:latest'
   api:
@@ -45,3 +45,5 @@ services:
     volumes: 
       - /home/node/app/node_modules
       - /home/jon/studying/multi-container-test/client:/home/node/app
+    environment:
+      - WDS_SOCKET_PORT=0

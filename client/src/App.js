@@ -12,7 +12,7 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           <h1>Fib Calculator</h1>
           <Link to="/">Home</Link>
-          <Link to="/otherpage">different page</Link>
+          <Link to="/otherpage">go to other page</Link>
         </header>
         <div>
           <Route exact path="/" component={Fib} />
